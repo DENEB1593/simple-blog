@@ -1,4 +1,4 @@
-package io.dev.simpleblog.api;
+package io.dev.simpleblog.web;
 
 public class PostController {
 }

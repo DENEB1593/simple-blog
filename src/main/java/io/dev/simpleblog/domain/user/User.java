@@ -10,14 +10,16 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lombok.AccessLevel.*;
+
 /**
  * 회원(User)을 정의한다.
  * 이메일, 닉네임, 비밀번호
  */
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor(access = PRIVATE)
 @Entity
 @Table(
         name = "users",
@@ -47,5 +49,11 @@ public class User
             mappedBy = "user"
     )
     private List<Post> posts = new ArrayList<>();
+
+    public User(String email, String nickname, String password) {
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+    }
 
 }
