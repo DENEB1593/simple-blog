@@ -1,10 +1,12 @@
 package io.dev.simpleblog.service;
 
 import io.dev.simpleblog.domain.user.User;
+import io.dev.simpleblog.domain.user.UserDto;
 import io.dev.simpleblog.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,10 +16,17 @@ public class UserService {
 
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public User join(User user) {
-        return userRepository.save(user);
+    public UserDto join(UserDto userDto) {
+        log.info("user join request: {}", userDto);
+        var user = new User(
+            userDto.email(),
+            userDto.nickname(),
+            passwordEncoder.encode(userDto.password())
+        );
+        return userRepository.save(user).toDto();
     }
 
 }

@@ -56,4 +56,10 @@ public class User
         this.password = password;
     }
 
+    public UserDto toDto() {
+        return new UserDto(
+            email,
+            nickname,
+            password);
+    }
 }

@@ -22,6 +22,7 @@ public class DataLoader {
 
     private static final Logger log = LoggerFactory.getLogger(DataLoader.class);
     private static final Faker faker = new Faker();
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
