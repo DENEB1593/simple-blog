@@ -26,5 +26,4 @@ public class UserController {
             userService.join(userDto));
     }
 
-
 }
