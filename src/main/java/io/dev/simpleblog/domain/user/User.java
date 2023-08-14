@@ -59,12 +59,9 @@ public class User
 
     public UserDto toDto() {
         return new UserDto(
-            id,
             email,
             nickname,
-            password,
-            getCreatedAt(),
-            getUpdatedAt()
+            password
         );
     }
 }

@@ -25,14 +25,11 @@ class UserServiceTest {
     @BeforeEach
     void init() {
         givenUser = new UserDto(
-                null,
                 "deneb@email.test",
                 "deneb",
-                "1234",
-                null,
-                null);
+                "1234"
+        );
     }
-
 
 
     @Test
@@ -41,8 +38,6 @@ class UserServiceTest {
         var expected = userService.join(givenUser);
 
         assertThat(expected).isNotNull();
-        assertThat(expected.createdAt()).isNotNull();
-        assertThat(expected.updatedAt()).isNotNull();
         assertThat(expected).usingRecursiveComparison().comparingOnlyFields("email", "nickname");
     }
 
@@ -53,8 +48,6 @@ class UserServiceTest {
         UserDto expected = userService.findUserByEmail(givenUser.email());
 
         assertThat(expected).isNotNull();
-        assertThat(expected.createdAt()).isNotNull();
-        assertThat(expected.updatedAt()).isNotNull();
         assertThat(expected.email()).isEqualTo(givenUser.email());
     }
 

@@ -1,14 +1,18 @@
 package io.dev.simpleblog.domain.user;
 
-
-import java.time.LocalDateTime;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 public record UserDto(
-    Long id,
     String email,
     String nickname,
-    String password,
-    LocalDateTime createdAt,
-    LocalDateTime updatedAt
+    String password
 ) {
+
+    public User toEntity(PasswordEncoder encoder) {
+        return new User(
+            email,
+            nickname,
+            encoder.encode(password)
+        );
+    }
 }

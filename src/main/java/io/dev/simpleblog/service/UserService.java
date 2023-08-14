@@ -6,6 +6,8 @@ import io.dev.simpleblog.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,13 +23,7 @@ public class UserService {
 
     @Transactional
     public UserDto join(UserDto userDto) {
-        log.info("user join request: {}", userDto);
-        var user = new User(
-            userDto.email(),
-            userDto.nickname(),
-            passwordEncoder.encode(userDto.password())
-        );
-        return userRepository.save(user).toDto();
+        return userRepository.save(userDto.toEntity(passwordEncoder)).toDto();
     }
 
     @Transactional(readOnly = true)
@@ -37,6 +33,12 @@ public class UserService {
                 () -> new UsernameNotFoundException(
                     String.format("user not found [email: %s]", email)))
             .toDto();
+    }
+
+
+    @Transactional(readOnly = true)
+    public UserDetailsService userDetailsService() {
+        return email -> null;
     }
 
 }
