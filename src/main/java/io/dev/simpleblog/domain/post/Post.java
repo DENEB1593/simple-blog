@@ -44,5 +44,9 @@ public class Post
     )
     private List<Comment> comments = new ArrayList<>();
 
-
+    public Post(String title, String content, User user) {
+        this.title = title;
+        this.content = content;
+        this.user = user;
+    }
 }

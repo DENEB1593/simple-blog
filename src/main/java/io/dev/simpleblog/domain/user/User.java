@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,8 +59,12 @@ public class User
 
     public UserDto toDto() {
         return new UserDto(
+            id,
             email,
             nickname,
-            password);
+            password,
+            getCreatedAt(),
+            getUpdatedAt()
+        );
     }
 }
