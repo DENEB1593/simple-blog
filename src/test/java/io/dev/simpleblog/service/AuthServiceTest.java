@@ -13,12 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional
 @SpringBootTest
-class UserServiceTest {
+public class AuthServiceTest {
 
     static final Logger log = LoggerFactory.getLogger(UserServiceTest.class);
-
-    @Autowired
-    UserService userService;
 
     @Autowired
     AuthService authService;
@@ -36,13 +33,14 @@ class UserServiceTest {
 
 
     @Test
-    void whenFindUserByEmail_ShouldFounded() {
-        authService.join(givenUser);
+    void whenJoinRequest_ShouldSaveUser() {
 
-        UserDto expected = userService.findUserByEmail(givenUser.email());
+        var expected = authService.join(givenUser);
 
         assertThat(expected).isNotNull();
-        assertThat(expected.email()).isEqualTo(givenUser.email());
+        assertThat(expected).usingRecursiveComparison().comparingOnlyFields("email", "nickname");
     }
+
+
 
 }

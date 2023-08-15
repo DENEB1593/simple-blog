@@ -19,12 +19,6 @@ public class UserService {
 
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-
-    @Transactional
-    public UserDto join(UserDto userDto) {
-        return userRepository.save(userDto.toEntity(passwordEncoder)).toDto();
-    }
 
     @Transactional(readOnly = true)
     public UserDto findUserByEmail(String email) {
