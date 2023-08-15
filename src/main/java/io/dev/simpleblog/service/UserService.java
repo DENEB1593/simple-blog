@@ -20,19 +20,5 @@ public class UserService {
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
 
-    @Transactional(readOnly = true)
-    public UserDto findUserByEmail(String email) {
-        return userRepository.findByEmail(email)
-            .orElseThrow(
-                () -> new UsernameNotFoundException(
-                    String.format("user not found [email: %s]", email)))
-            .toDto();
-    }
-
-
-    @Transactional(readOnly = true)
-    public UserDetailsService userDetailsService() {
-        return email -> null;
-    }
 
 }
