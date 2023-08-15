@@ -1,5 +1,7 @@
 package io.dev.simpleblog.service;
 
+import io.dev.simpleblog.config.security.UserAuthentication;
+import io.dev.simpleblog.domain.user.User;
 import io.dev.simpleblog.domain.user.UserDto;
 import io.dev.simpleblog.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ public class AuthService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(""));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(""));
+        return UserAuthentication.from(user);
     }
 }
