@@ -22,3 +22,7 @@ spring:
       ddl-auto: create-drop
     show-sql: true
     open-in-view: false
+
+jwt:
+  key: fa2cca2367507bf233a7d0abf3209d02905c99ea17c488cb9009d3a6905d5b31
+  expiration: 86400

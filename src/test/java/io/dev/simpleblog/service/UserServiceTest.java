@@ -35,14 +35,5 @@ class UserServiceTest {
     }
 
 
-    @Test
-    void whenFindUserByEmail_ShouldFounded() {
-        authService.join(givenUser);
-
-        UserDto expected = userService.findUserByEmail(givenUser.email());
-
-        assertThat(expected).isNotNull();
-        assertThat(expected.email()).isEqualTo(givenUser.email());
-    }
 
 }

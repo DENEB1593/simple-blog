@@ -26,6 +26,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    // jwt
+    implementation 'io.fusionauth:fusionauth-jwt:5.2.4'
+
     implementation 'com.github.javafaker:javafaker:1.0.2'
 
     compileOnly 'org.projectlombok:lombok'
