@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -26,6 +27,7 @@ public class SecurityConfig {
 
     private final PasswordEncoder passwordEncoder;
     private final AuthService authService;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     /**
      * spring security 설정
@@ -46,7 +48,8 @@ public class SecurityConfig {
                     auth
                             .requestMatchers(antMatcher("/h2-console/**")).permitAll()
                             .anyRequest().authenticated();
-                });
+                })
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
 
