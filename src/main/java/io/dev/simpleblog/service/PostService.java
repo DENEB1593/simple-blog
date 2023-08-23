@@ -1,7 +1,10 @@
 package io.dev.simpleblog.service;
 
 import io.dev.simpleblog.domain.post.Post;
+import io.dev.simpleblog.domain.post.PostDto;
 import io.dev.simpleblog.domain.post.PostRepository;
+import io.dev.simpleblog.exception.BusinessException;
+import io.dev.simpleblog.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,4 +21,9 @@ public class PostService {
         return postRepository.save(post);
     }
 
+    public PostDto findOne(Long id) {
+        return postRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(Post.class, id))
+                .toDto();
+    }
 }

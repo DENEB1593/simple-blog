@@ -1,7 +1,6 @@
 package io.dev.simpleblog.config.security;
 
 import io.dev.simpleblog.service.AuthService;
-import io.fusionauth.jwt.domain.JWT;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,9 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -50,9 +48,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             var jwt = jwtManager.decode(accessToken);
             var userDetails = authService.loadUserByUsername(jwt.subject);
 
-            // TODO jwt의 claim을 검증한다.
+            var context = SecurityContextHolder.getContext();
 
+            // TODO jwt의 claim을 검증한다
 
+            var authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null);
+            context.setAuthentication(authenticationToken);
+            SecurityContextHolder.setContext(context);
         }
         else {
             log.info("log in info : {}", SecurityContextHolder.getContext().getAuthentication());

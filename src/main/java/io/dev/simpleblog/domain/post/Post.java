@@ -49,4 +49,8 @@ public class Post
         this.content = content;
         this.user = user;
     }
+
+    public PostDto toDto() {
+        return new PostDto(title, content, user);
+    }
 }

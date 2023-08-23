@@ -7,12 +7,9 @@ import java.time.LocalDateTime;
 import static org.springframework.util.Assert.*;
 
 public record PostDto(
-        String id,
         String title,
         String content,
-        User user,
-        LocalDateTime createdAt,
-        LocalDateTime updatedAt
+        User user
 ) {
 
     public Post toEntity() {
