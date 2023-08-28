@@ -1,4 +1,4 @@
-package io.dev.simpleblog.domain.auth;
+package io.dev.simpleblog.web.dto;
 
 public record LoginDto(
         String email,

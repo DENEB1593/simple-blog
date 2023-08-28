@@ -1,14 +1,11 @@
-package io.dev.simpleblog.web.auth;
+package io.dev.simpleblog.web;
 
-import io.dev.simpleblog.domain.auth.LoginDto;
-import io.dev.simpleblog.domain.user.User;
+import io.dev.simpleblog.web.dto.LoginDto;
 import io.dev.simpleblog.domain.user.UserDto;
 import io.dev.simpleblog.service.AuthService;
-import io.dev.simpleblog.web.auth.LoginResultDto;
+import io.dev.simpleblog.web.dto.LoginResultDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,7 +20,7 @@ public class AuthController {
         return ResponseEntity.ok(authService.join(userDto));
     }
 
-    @PostMapping
+    @PostMapping("/login")
     public ResponseEntity<LoginResultDto> login(@RequestBody LoginDto loginDto) {
         return ResponseEntity.ok(authService.login(loginDto));
     }
