@@ -1,0 +1,14 @@
+rootProject.name = 'simple-blog'
+include 'api'
+include 'core'
+
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode = RepositoriesMode.PREFER_PROJECT
+}
