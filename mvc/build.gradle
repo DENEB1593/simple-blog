@@ -1,0 +1,16 @@
+dependencies {
+    implementation project(":core")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.bootJar {
+    enabled = true
+    archiveFileName.set("${rootProject.name}-${project.name}.jar")
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs.add("-parameters")
+}

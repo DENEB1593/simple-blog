@@ -1,0 +1,11 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: simple-blog-mvc
+
+  mustache:
+    charset: UTF-8
+    prefix: classpath:/templates/
+    suffix: .mustache

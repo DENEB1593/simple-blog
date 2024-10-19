@@ -12,7 +12,10 @@ public class SampleController {
 
   @GetMapping
   public Sample sample() {
-    return new Sample("sample-id", "sample-name");
+    return Sample.builder()
+        .id("sample-id")
+        .name("sample-name")
+        .build();
   }
 
 }

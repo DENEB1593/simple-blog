@@ -9,3 +9,7 @@ tasks.bootJar {
 	enabled = true
 	archiveFileName.set("${rootProject.name}-${project.name}.jar")
 }
+
+tasks.withType(JavaCompile).configureEach {
+	options.compilerArgs.add("-parameters")
+}
