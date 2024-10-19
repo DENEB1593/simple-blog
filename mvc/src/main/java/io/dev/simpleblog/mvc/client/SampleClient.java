@@ -13,21 +13,18 @@ public class SampleClient {
   private final RestClient restClient;
 
   public SampleClient() {
-    this.restClient = RestClient.builder()
-        .baseUrl("http://localhost:8080")
-        .build();
+    this.restClient = RestClient.builder().baseUrl("http://localhost:8080").build();
   }
 
   public Sample getSample() {
     return restClient
-        .get()
-        .uri("/api/v1/sample")
-        .retrieve()
-        .onStatus(HttpStatusCode::is5xxServerError, ((request, response) -> {
-          LOG.error("sample api request error - message: {}", response.getStatusCode());
-        }))
-        .toEntity(Sample.class)
-        .getBody();
+      .get()
+      .uri("/api/v1/sample")
+      .retrieve()
+      .onStatus(HttpStatusCode::is5xxServerError, ((request, response) -> {
+        LOG.error("sample api request error - message: {}", response.getStatusCode());
+      }))
+      .toEntity(Sample.class)
+      .getBody();
   }
-
 }

@@ -1,6 +1,5 @@
 package io.dev.simpleblog.api.controller;
 
-
 import io.dev.simpleblog.core.domain.sample.Sample;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +12,8 @@ public class SampleController {
   @GetMapping
   public Sample sample() {
     return Sample.builder()
-        .id("sample-id")
-        .name("sample-name")
-        .build();
+      .id("sample-id")
+      .name("sample-name")
+      .build();
   }
-
 }
