@@ -24,7 +24,7 @@ public class SampleClient {
         .uri("/api/v1/sample")
         .retrieve()
         .onStatus(HttpStatusCode::is5xxServerError, ((request, response) -> {
-          log.error("sample api request error - message: {}", response.getStatusCode());
+          LOG.error("sample api request error - message: {}", response.getStatusCode());
         }))
         .toEntity(Sample.class)
         .getBody();
