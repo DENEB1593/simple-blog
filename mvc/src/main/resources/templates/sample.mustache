@@ -18,7 +18,8 @@
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
-              <a href="/" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
+              <a href="/" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                 aria-current="page">Home</a>
             </div>
           </div>
         </div>
@@ -26,15 +27,34 @@
     </div>
   </nav>
 
-  <main>
-    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-      <div class="bg-white shadow rounded-lg p-6">
-        {{#sample}}
-          <h1 class="text-2xl font-bold mb-4">Welcome, {{ sample.name}}</h1>
-          <p class="text-gray-600">Your id is {{ sample.id }}</p>
-        {{/sample}}
+  <main class="flex justify-center items-start min-h-screen pt-20">
+    {{#samples}}
+      <div
+          class="relative flex w-96 flex-col rounded-lg border border-slate-200 bg-white shadow-sm">
+        <nav class="flex min-w-[240px] flex-col gap-1 p-1.5">
+          <div
+              role="button"
+              class="text-slate-800 flex w-full items-center rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+          >
+            <div class="mr-4 grid place-items-center">
+              <svg class="w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                      clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <div>
+              <h6 class="text-slate-800 font-medium">
+                {{ name }}
+              </h6>
+              <p class="text-slate-500 text-sm">
+                {{ email }}
+              </p>
+            </div>
+          </div>
+        </nav>
       </div>
-    </div>
+    {{/samples}}
   </main>
 </div>
 </body>
