@@ -4,6 +4,13 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password: password
+    hikari:
+      pool-name: simpe-blog-pool
+      maximum-pool-size: 20
+      minimum-idle: 10
+      idle-timeout: 30
+      connection-timeout: 10000
+      connection-test-query: select 1
   h2:
     console:
       enabled: true
